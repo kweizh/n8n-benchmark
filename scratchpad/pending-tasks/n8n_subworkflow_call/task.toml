@@ -1,0 +1,8 @@
+[build]
+engine = "docker"
+
+[environment]
+image = "n8n_subworkflow_call"
+
+[verify]
+timeout = 300

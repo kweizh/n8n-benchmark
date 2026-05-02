@@ -1,0 +1,45 @@
+{
+  "name": "Extract HTML Content",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "data",
+              "value": "<html><head><title>My Test Page</title></head><body><h1 class=\"heading\">Welcome to n8n</h1><img src=\"https://n8n.io/logo.png\"></body></html>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mock HTML",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [
+          {
+            "node": "Mock HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "id": "1"
+}
