@@ -1,0 +1,220 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 22ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py FF                                             [100%]
+
+=================================== FAILURES ===================================
+_____________________________ test_workflow_exists _____________________________
+
+    def test_workflow_exists():
+>       assert os.path.exists("/home/user/workspace/workflow.json"), "workflow.json does not exist"
+E       AssertionError: workflow.json does not exist
+E       assert False
+E        +  where False = <function exists at 0x7335c354f560>('/home/user/workspace/workflow.json')
+E        +    where <function exists at 0x7335c354f560> = <module 'posixpath' (frozen)>.exists
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:6: AssertionError
+___________________________ test_workflow_execution ____________________________
+
+    def test_workflow_execution():
+        # Import the workflow
+        import_result = subprocess.run(
+            ["n8n", "import:workflow", "--input=/home/user/workspace/workflow.json"],
+            capture_output=True,
+            text=True
+        )
+>       assert import_result.returncode == 0, f"Failed to import workflow: {import_result.stderr}\n{import_result.stdout}"
+E       AssertionError: Failed to import workflow: (node:491) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+E         (Use `node --trace-deprecation ...` to show where the warning was created)
+E         
+E         No encryption key found - Auto-generated and saved to: /root/.n8n/config
+E         Permissions 0644 for n8n settings file /root/.n8n/config are too wide. This is ignored for now, but in the future n8n will attempt to change the permissions automatically. To automatically enforce correct permissions now set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true (recommended), or turn this check off set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
+E         Migrations in progress, please do NOT stop the process.
+E         Starting migration InitialMigration1588102412422
+E         Finished migration InitialMigration1588102412422
+E         Starting migration WebhookModel1592445003908
+E         Finished migration WebhookModel1592445003908
+E         Starting migration CreateIndexStoppedAt1594825041918
+E         Finished migration CreateIndexStoppedAt1594825041918
+E         Starting migration MakeStoppedAtNullable1607431743769
+E         Finished migration MakeStoppedAtNullable1607431743769
+E         Starting migration AddWebhookId1611071044839
+E         Finished migration AddWebhookId1611071044839
+E         Starting migration CreateTagEntity1617213344594
+E         Finished migration CreateTagEntity1617213344594
+E         Starting migration UniqueWorkflowNames1620821879465
+E         Finished migration UniqueWorkflowNames1620821879465
+E         Starting migration AddWaitColumn1621707690587
+E         Finished migration AddWaitColumn1621707690587
+E         Starting migration UpdateWorkflowCredentials1630330987096
+E         Finished migration UpdateWorkflowCredentials1630330987096
+E         Starting migration AddExecutionEntityIndexes1644421939510
+E         Finished migration AddExecutionEntityIndexes1644421939510
+E         Starting migration CreateUserManagement1646992772331
+E         Finished migration CreateUserManagement1646992772331
+E         Starting migration LowerCaseUserEmail1648740597343
+E         Finished migration LowerCaseUserEmail1648740597343
+E         Starting migration CommunityNodes1652254514001
+E         Finished migration CommunityNodes1652254514001
+E         Starting migration AddUserSettings1652367743993
+E         Finished migration AddUserSettings1652367743993
+E         Starting migration AddAPIKeyColumn1652905585850
+E         Finished migration AddAPIKeyColumn1652905585850
+E         Starting migration IntroducePinData1654089251344
+E         Finished migration IntroducePinData1654089251344
+E         Starting migration AddNodeIds1658930531669
+E         Finished migration AddNodeIds1658930531669
+E         Starting migration AddJsonKeyPinData1659888469333
+E         Finished migration AddJsonKeyPinData1659888469333
+E         Starting migration CreateCredentialsUserRole1660062385367
+E         Finished migration CreateCredentialsUserRole1660062385367
+E         Starting migration CreateWorkflowsEditorRole1663755770892
+E         Finished migration CreateWorkflowsEditorRole1663755770892
+E         Starting migration WorkflowStatistics1664196174000
+E         Finished migration WorkflowStatistics1664196174000
+E         Starting migration CreateCredentialUsageTable1665484192211
+E         Finished migration CreateCredentialUsageTable1665484192211
+E         Starting migration RemoveCredentialUsageTable1665754637024
+E         Finished migration RemoveCredentialUsageTable1665754637024
+E         Starting migration AddWorkflowVersionIdColumn1669739707124
+E         Finished migration AddWorkflowVersionIdColumn1669739707124
+E         Starting migration AddTriggerCountColumn1669823906993
+E         Finished migration AddTriggerCountColumn1669823906993
+E         Starting migration MessageEventBusDestinations1671535397530
+E         Finished migration MessageEventBusDestinations1671535397530
+E         Starting migration RemoveWorkflowDataLoadedFlag1671726148419
+E         Finished migration RemoveWorkflowDataLoadedFlag1671726148419
+E         Starting migration DeleteExecutionsWithWorkflows1673268682475
+E         Finished migration DeleteExecutionsWithWorkflows1673268682475
+E         Starting migration AddStatusToExecutions1674138566000
+E         Finished migration AddStatusToExecutions1674138566000
+E         Starting migration CreateLdapEntities1674509946020
+E         Finished migration CreateLdapEntities1674509946020
+E         Starting migration PurgeInvalidWorkflowConnections1675940580449
+E         Finished migration PurgeInvalidWorkflowConnections1675940580449
+E         Starting migration MigrateExecutionStatus1676996103000
+E         Finished migration MigrateExecutionStatus1676996103000
+E         Starting migration UpdateRunningExecutionStatus1677237073720
+E         Finished migration UpdateRunningExecutionStatus1677237073720
+E         Starting migration CreateVariables1677501636752
+E         Finished migration CreateVariables1677501636752
+E         Starting migration CreateExecutionMetadataTable1679416281777
+E         Finished migration CreateExecutionMetadataTable1679416281777
+E         Starting migration AddUserActivatedProperty1681134145996
+E         Finished migration AddUserActivatedProperty1681134145996
+E         Starting migration RemoveSkipOwnerSetup1681134145997
+E         Finished migration RemoveSkipOwnerSetup1681134145997
+E         Starting migration MigrateIntegerKeysToString1690000000002
+E         Finished migration MigrateIntegerKeysToString1690000000002
+E         Starting migration SeparateExecutionData1690000000010
+E         Finished migration SeparateExecutionData1690000000010
+E         Starting migration FixMissingIndicesFromStringIdMigration1690000000020
+E         Finished migration FixMissingIndicesFromStringIdMigration1690000000020
+E         Starting migration RemoveResetPasswordColumns1690000000030
+E         Finished migration RemoveResetPasswordColumns1690000000030
+E         Starting migration AddMfaColumns1690000000030
+E         Finished migration AddMfaColumns1690000000030
+E         Starting migration CreateWorkflowNameIndex1691088862123
+E         Finished migration CreateWorkflowNameIndex1691088862123
+E         Starting migration CreateWorkflowHistoryTable1692967111175
+E         Finished migration CreateWorkflowHistoryTable1692967111175
+E         Starting migration ExecutionSoftDelete1693491613982
+E         Finished migration ExecutionSoftDelete1693491613982
+E         Starting migration DisallowOrphanExecutions1693554410387
+E         Finished migration DisallowOrphanExecutions1693554410387
+E         Starting migration AddWorkflowMetadata1695128658538
+E         Finished migration AddWorkflowMetadata1695128658538
+E         Starting migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+E         Finished migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+E         Starting migration AddGlobalAdminRole1700571993961
+E         Finished migration AddGlobalAdminRole1700571993961
+E         Starting migration DropRoleMapping1705429061930
+E         Finished migration DropRoleMapping1705429061930
+E         Starting migration RemoveFailedExecutionStatus1711018413374
+E         Finished migration RemoveFailedExecutionStatus1711018413374
+E         Starting migration MoveSshKeysToDatabase1711390882123
+E         [MoveSshKeysToDatabase1711390882123] No SSH keys in filesystem, skipping
+E         Finished migration MoveSshKeysToDatabase1711390882123
+E         Starting migration RemoveNodesAccess1712044305787
+E         Finished migration RemoveNodesAccess1712044305787
+E         Starting migration CreateProject1714133768519
+E         Finished migration CreateProject1714133768519
+E         Starting migration MakeExecutionStatusNonNullable1714133768521
+E         Finished migration MakeExecutionStatusNonNullable1714133768521
+E         Starting migration AddActivatedAtUserSetting1717498465931
+E         Finished migration AddActivatedAtUserSetting1717498465931
+E         Starting migration AddConstraintToExecutionMetadata1720101653148
+E         Finished migration AddConstraintToExecutionMetadata1720101653148
+E         Starting migration CreateInvalidAuthTokenTable1723627610222
+E         Finished migration CreateInvalidAuthTokenTable1723627610222
+E         Starting migration RefactorExecutionIndices1723796243146
+E         Finished migration RefactorExecutionIndices1723796243146
+E         Starting migration CreateAnnotationTables1724753530828
+E         Finished migration CreateAnnotationTables1724753530828
+E         Starting migration AddApiKeysTable1724951148974
+E         Finished migration AddApiKeysTable1724951148974
+E         Starting migration CreateProcessedDataTable1726606152711
+E         Finished migration CreateProcessedDataTable1726606152711
+E         Starting migration SeparateExecutionCreationFromStart1727427440136
+E         Finished migration SeparateExecutionCreationFromStart1727427440136
+E         Starting migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+E         Finished migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+E         Starting migration UpdateProcessedDataValueColumnToText1729607673464
+E         Finished migration UpdateProcessedDataValueColumnToText1729607673464
+E         Starting migration AddProjectIcons1729607673469
+E         Finished migration AddProjectIcons1729607673469
+E         Starting migration CreateTestDefinitionTable1730386903556
+E         Finished migration CreateTestDefinitionTable1730386903556
+E         Starting migration AddDescriptionToTestDefinition1731404028106
+E         Finished migration AddDescriptionToTestDefinition1731404028106
+E         Starting migration MigrateTestDefinitionKeyToString1731582748663
+E         Finished migration MigrateTestDefinitionKeyToString1731582748663
+E         Starting migration CreateTestMetricTable1732271325258
+E         Finished migration CreateTestMetricTable1732271325258
+E         Starting migration CreateTestRun1732549866705
+E         Finished migration CreateTestRun1732549866705
+E         Starting migration AddMockedNodesColumnToTestDefinition1733133775640
+E         Finished migration AddMockedNodesColumnToTestDefinition1733133775640
+E         Starting migration AddManagedColumnToCredentialsTable1734479635324
+E         Finished migration AddManagedColumnToCredentialsTable1734479635324
+E         Starting migration AddStatsColumnsToTestRun1736172058779
+E         Finished migration AddStatsColumnsToTestRun1736172058779
+E         Starting migration CreateTestCaseExecutionTable1736947513045
+E         Finished migration CreateTestCaseExecutionTable1736947513045
+E         Starting migration AddErrorColumnsToTestRuns1737715421462
+E         Finished migration AddErrorColumnsToTestRuns1737715421462
+E         Starting migration CreateFolderTable1738709609940
+E         Finished migration CreateFolderTable1738709609940
+E         
+E         There is a deprecation related to your environment variables. Please take the recommended actions to update your configuration:
+E          - N8N_RUNNERS_ENABLED -> Running n8n without task runners is deprecated. Task runners will be turned on by default in a future version. Please set `N8N_RUNNERS_ENABLED=true` to enable task runners now and avoid potential issues in the future. Learn more: https://docs.n8n.io/hosting/configuration/task-runners/
+E         
+E         An error occurred while importing workflows. See log messages for details.
+E         ENOENT: no such file or directory, open '/home/user/workspace/workflow.json'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['n8n', 'import:workflow', '--input=/home/user/workspace/workflow.json'], returncode=1, stdout="...ase use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n').returncode
+
+tests/test_final_state.py:15: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_final_state.py::test_workflow_exists - AssertionError: work...
+FAILED tests/test_final_state.py::test_workflow_execution - AssertionError: F...
+============================== 2 failed in 14.18s ==============================

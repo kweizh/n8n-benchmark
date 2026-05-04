@@ -1,0 +1,44 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 0,
+            "failed": 2,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777778767.404712,
+            "stop": 1777778795.7463684
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_exported_and_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 25.776792171876878,
+                "start": 1777778767.5868003,
+                "stop": 1777778793.381736,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_exported_and_exists():\n        \"\"\"Priority 1: Use n8n CLI to export workflows and verify.\"\"\"\n        result = subprocess.run(\n            [\"n8n\", \"export:workflow\", \"--all\", \"--output=/tmp/workflows.json\"],\n            capture_output=True, text=True\n        )\n>       assert result.returncode == 0, f\"'n8n export:workflow' failed: {result.stderr}\"\nE       AssertionError: 'n8n export:workflow' failed: \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['n8n', 'export:workflow', '--all', '--output=/tmp/workflows.json'], returncode=1, stdout='No en...043\\nError exporting workflows. See log messages for details.\\nNo workflows found with specified filters\\n', stderr='').returncode\n\ntests/test_final_state.py:22: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_credentials_exported_and_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2.3610234982334077,
+                "start": 1777778793.3820093,
+                "stop": 1777778795.7461636,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_credentials_exported_and_exists():\n        \"\"\"Priority 1: Use n8n CLI to export credentials and verify.\"\"\"\n        result = subprocess.run(\n            [\"n8n\", \"export:credentials\", \"--all\", \"--output=/tmp/credentials.json\"],\n            capture_output=True, text=True\n        )\n>       assert result.returncode == 0, f\"'n8n export:credentials' failed: {result.stderr}\"\nE       AssertionError: 'n8n export:credentials' failed: \nE       assert 1 == 0\nE        +  where 1 = CompletedProcess(args=['n8n', 'export:credentials', '--all', '--output=/tmp/credentials.json'], returncode=1, stdout='...s for details.\\nNo credentials found with specified filters\\nNo credentials found with specified filters\\n', stderr='').returncode\n\ntests/test_final_state.py:81: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

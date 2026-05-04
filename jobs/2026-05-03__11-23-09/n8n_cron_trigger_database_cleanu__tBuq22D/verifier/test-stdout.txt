@@ -1,0 +1,55 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 47ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py FF                                             [100%]
+
+=================================== FAILURES ===================================
+______________________ test_workflow_exported_and_exists _______________________
+
+    def test_workflow_exported_and_exists():
+        """Priority 1: Use n8n CLI to export workflows and verify."""
+        result = subprocess.run(
+            ["n8n", "export:workflow", "--all", "--output=/tmp/workflows.json"],
+            capture_output=True, text=True
+        )
+>       assert result.returncode == 0, f"'n8n export:workflow' failed: {result.stderr}"
+E       AssertionError: 'n8n export:workflow' failed: 
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['n8n', 'export:workflow', '--all', '--output=/tmp/workflows.json'], returncode=1, stdout='No en...043\nError exporting workflows. See log messages for details.\nNo workflows found with specified filters\n', stderr='').returncode
+
+tests/test_final_state.py:22: AssertionError
+_____________________ test_credentials_exported_and_exists _____________________
+
+    def test_credentials_exported_and_exists():
+        """Priority 1: Use n8n CLI to export credentials and verify."""
+        result = subprocess.run(
+            ["n8n", "export:credentials", "--all", "--output=/tmp/credentials.json"],
+            capture_output=True, text=True
+        )
+>       assert result.returncode == 0, f"'n8n export:credentials' failed: {result.stderr}"
+E       AssertionError: 'n8n export:credentials' failed: 
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['n8n', 'export:credentials', '--all', '--output=/tmp/credentials.json'], returncode=1, stdout='...s for details.\nNo credentials found with specified filters\nNo credentials found with specified filters\n', stderr='').returncode
+
+tests/test_final_state.py:81: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_final_state.py::test_workflow_exported_and_exists - Asserti...
+FAILED tests/test_final_state.py::test_credentials_exported_and_exists - Asse...
+============================== 2 failed in 28.34s ==============================

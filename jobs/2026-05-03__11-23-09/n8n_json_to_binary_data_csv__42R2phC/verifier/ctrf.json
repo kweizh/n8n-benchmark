@@ -1,0 +1,80 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 0,
+            "failed": 5,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777778919.8376038,
+            "stop": 1777778920.0339394
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0013214782811701298,
+                "start": 1777778919.998272,
+                "stop": 1777778920.0201328,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_file_exists():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file not found at {WORKFLOW_FILE}\"\nE       AssertionError: Workflow file not found at /home/node/workflow.json\nE       assert False\nE        +  where False = <function isfile at 0x76e7896e0220>('/home/node/workflow.json')\nE        +    where <function isfile at 0x76e7896e0220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_is_valid_json",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005293118301779032,
+                "start": 1777778920.0203934,
+                "stop": 1777778920.0237606,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_is_valid_json():\n>       with open(WORKFLOW_FILE, \"r\") as f:\n             ^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/node/workflow.json'\n\ntests/test_final_state.py:11: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_required_nodes",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.00043939799070358276,
+                "start": 1777778920.0239644,
+                "stop": 1777778920.0266678,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_contains_required_nodes():\n>       with open(WORKFLOW_FILE, \"r\") as f:\n             ^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/node/workflow.json'\n\ntests/test_final_state.py:19: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_convert_node_configuration",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005293567664921284,
+                "start": 1777778920.0268607,
+                "stop": 1777778920.0303783,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_convert_node_configuration():\n>       with open(WORKFLOW_FILE, \"r\") as f:\n             ^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/node/workflow.json'\n\ntests/test_final_state.py:32: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            },
+            {
+                "name": "test_final_state.py::test_nodes_are_connected",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005274061113595963,
+                "start": 1777778920.030649,
+                "stop": 1777778920.0337517,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_nodes_are_connected():\n>       with open(WORKFLOW_FILE, \"r\") as f:\n             ^^^^^^^^^^^^^^^^^^^^^^^^\nE       FileNotFoundError: [Errno 2] No such file or directory: '/home/node/workflow.json'\n\ntests/test_final_state.py:46: FileNotFoundError",
+                "message": "The test failed in the call phase"
+            }
+        ]
+    }
+}

@@ -1,0 +1,340 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 32ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py FF                                             [100%]
+
+=================================== FAILURES ===================================
+__________________________ test_workflow_file_exists ___________________________
+
+    def test_workflow_file_exists():
+        """Priority 3 fallback: basic file existence check."""
+>       assert os.path.isfile(WORKFLOW_FILE), f"Workflow file not found at {WORKFLOW_FILE}"
+E       AssertionError: Workflow file not found at /home/user/workflow.json
+E       assert False
+E        +  where False = <function isfile at 0x7800f5728220>('/home/user/workflow.json')
+E        +    where <function isfile at 0x7800f5728220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:12: AssertionError
+___________________________ test_workflow_execution ____________________________
+
+    def test_workflow_execution():
+        """Priority 1: Use n8n CLI to verify the workflow logic."""
+        # Execute the workflow
+        env = os.environ.copy()
+        env["N8N_USER_FOLDER"] = "/home/user/.n8n"
+    
+        execute_result = subprocess.run(
+            ["n8n", "execute", f"--file={WORKFLOW_FILE}"],
+            capture_output=True, text=True, cwd=PROJECT_DIR, env=env
+        )
+        assert execute_result.returncode == 0, f"'n8n execute' failed: {execute_result.stderr}\n{execute_result.stdout}"
+    
+        output = execute_result.stdout
+>       assert "report.csv" in output, f"Expected 'report.csv' in the output, got: {output}"
+E       AssertionError: Expected 'report.csv' in the output, got: No encryption key found - Auto-generating and saving to: /home/user/.n8n/.n8n/config
+E         Migrations in progress, please do NOT stop the process.
+E         Starting migration InitialMigration1588102412422
+E         Finished migration InitialMigration1588102412422
+E         Starting migration WebhookModel1592445003908
+E         Finished migration WebhookModel1592445003908
+E         Starting migration CreateIndexStoppedAt1594825041918
+E         Finished migration CreateIndexStoppedAt1594825041918
+E         Starting migration MakeStoppedAtNullable1607431743769
+E         Finished migration MakeStoppedAtNullable1607431743769
+E         Starting migration AddWebhookId1611071044839
+E         Finished migration AddWebhookId1611071044839
+E         Starting migration CreateTagEntity1617213344594
+E         Finished migration CreateTagEntity1617213344594
+E         Starting migration UniqueWorkflowNames1620821879465
+E         Finished migration UniqueWorkflowNames1620821879465
+E         Starting migration AddWaitColumn1621707690587
+E         Finished migration AddWaitColumn1621707690587
+E         Starting migration UpdateWorkflowCredentials1630330987096
+E         Finished migration UpdateWorkflowCredentials1630330987096
+E         Starting migration AddExecutionEntityIndexes1644421939510
+E         Finished migration AddExecutionEntityIndexes1644421939510
+E         Starting migration CreateUserManagement1646992772331
+E         Finished migration CreateUserManagement1646992772331
+E         Starting migration LowerCaseUserEmail1648740597343
+E         Finished migration LowerCaseUserEmail1648740597343
+E         Starting migration CommunityNodes1652254514001
+E         Finished migration CommunityNodes1652254514001
+E         Starting migration AddUserSettings1652367743993
+E         Finished migration AddUserSettings1652367743993
+E         Starting migration AddAPIKeyColumn1652905585850
+E         Finished migration AddAPIKeyColumn1652905585850
+E         Starting migration IntroducePinData1654089251344
+E         Finished migration IntroducePinData1654089251344
+E         Starting migration AddNodeIds1658930531669
+E         Finished migration AddNodeIds1658930531669
+E         Starting migration AddJsonKeyPinData1659888469333
+E         Finished migration AddJsonKeyPinData1659888469333
+E         Starting migration CreateCredentialsUserRole1660062385367
+E         Finished migration CreateCredentialsUserRole1660062385367
+E         Starting migration CreateWorkflowsEditorRole1663755770892
+E         Finished migration CreateWorkflowsEditorRole1663755770892
+E         Starting migration WorkflowStatistics1664196174000
+E         Finished migration WorkflowStatistics1664196174000
+E         Starting migration CreateCredentialUsageTable1665484192211
+E         Finished migration CreateCredentialUsageTable1665484192211
+E         Starting migration RemoveCredentialUsageTable1665754637024
+E         Finished migration RemoveCredentialUsageTable1665754637024
+E         Starting migration AddWorkflowVersionIdColumn1669739707124
+E         Finished migration AddWorkflowVersionIdColumn1669739707124
+E         Starting migration AddTriggerCountColumn1669823906993
+E         Finished migration AddTriggerCountColumn1669823906993
+E         Starting migration MessageEventBusDestinations1671535397530
+E         Finished migration MessageEventBusDestinations1671535397530
+E         Starting migration RemoveWorkflowDataLoadedFlag1671726148419
+E         Finished migration RemoveWorkflowDataLoadedFlag1671726148419
+E         Starting migration DeleteExecutionsWithWorkflows1673268682475
+E         Finished migration DeleteExecutionsWithWorkflows1673268682475
+E         Starting migration AddStatusToExecutions1674138566000
+E         Finished migration AddStatusToExecutions1674138566000
+E         Starting migration CreateLdapEntities1674509946020
+E         Finished migration CreateLdapEntities1674509946020
+E         Starting migration PurgeInvalidWorkflowConnections1675940580449
+E         Finished migration PurgeInvalidWorkflowConnections1675940580449
+E         Starting migration MigrateExecutionStatus1676996103000
+E         Finished migration MigrateExecutionStatus1676996103000
+E         Starting migration UpdateRunningExecutionStatus1677237073720
+E         Finished migration UpdateRunningExecutionStatus1677237073720
+E         Starting migration CreateVariables1677501636752
+E         Finished migration CreateVariables1677501636752
+E         Starting migration CreateExecutionMetadataTable1679416281777
+E         Finished migration CreateExecutionMetadataTable1679416281777
+E         Starting migration AddUserActivatedProperty1681134145996
+E         Finished migration AddUserActivatedProperty1681134145996
+E         Starting migration RemoveSkipOwnerSetup1681134145997
+E         Finished migration RemoveSkipOwnerSetup1681134145997
+E         Starting migration MigrateIntegerKeysToString1690000000002
+E         Finished migration MigrateIntegerKeysToString1690000000002
+E         Starting migration SeparateExecutionData1690000000010
+E         Finished migration SeparateExecutionData1690000000010
+E         Starting migration FixMissingIndicesFromStringIdMigration1690000000020
+E         Finished migration FixMissingIndicesFromStringIdMigration1690000000020
+E         Starting migration RemoveResetPasswordColumns1690000000030
+E         Finished migration RemoveResetPasswordColumns1690000000030
+E         Starting migration AddMfaColumns1690000000030
+E         Finished migration AddMfaColumns1690000000030
+E         Starting migration CreateWorkflowNameIndex1691088862123
+E         Finished migration CreateWorkflowNameIndex1691088862123
+E         Starting migration CreateWorkflowHistoryTable1692967111175
+E         Finished migration CreateWorkflowHistoryTable1692967111175
+E         Starting migration ExecutionSoftDelete1693491613982
+E         Finished migration ExecutionSoftDelete1693491613982
+E         Starting migration DisallowOrphanExecutions1693554410387
+E         Finished migration DisallowOrphanExecutions1693554410387
+E         Starting migration AddWorkflowMetadata1695128658538
+E         Finished migration AddWorkflowMetadata1695128658538
+E         Starting migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+E         Finished migration ModifyWorkflowHistoryNodesAndConnections1695829275184
+E         Starting migration AddGlobalAdminRole1700571993961
+E         Finished migration AddGlobalAdminRole1700571993961
+E         Starting migration DropRoleMapping1705429061930
+E         Finished migration DropRoleMapping1705429061930
+E         Starting migration RemoveFailedExecutionStatus1711018413374
+E         Finished migration RemoveFailedExecutionStatus1711018413374
+E         Starting migration MoveSshKeysToDatabase1711390882123
+E         [MoveSshKeysToDatabase1711390882123] No SSH keys in filesystem, skipping
+E         Finished migration MoveSshKeysToDatabase1711390882123
+E         Starting migration RemoveNodesAccess1712044305787
+E         Finished migration RemoveNodesAccess1712044305787
+E         Starting migration CreateProject1714133768519
+E         Finished migration CreateProject1714133768519
+E         Starting migration MakeExecutionStatusNonNullable1714133768521
+E         Finished migration MakeExecutionStatusNonNullable1714133768521
+E         Starting migration AddActivatedAtUserSetting1717498465931
+E         Finished migration AddActivatedAtUserSetting1717498465931
+E         Starting migration AddConstraintToExecutionMetadata1720101653148
+E         Finished migration AddConstraintToExecutionMetadata1720101653148
+E         Starting migration CreateInvalidAuthTokenTable1723627610222
+E         Finished migration CreateInvalidAuthTokenTable1723627610222
+E         Starting migration RefactorExecutionIndices1723796243146
+E         Finished migration RefactorExecutionIndices1723796243146
+E         Starting migration CreateAnnotationTables1724753530828
+E         Finished migration CreateAnnotationTables1724753530828
+E         Starting migration AddApiKeysTable1724951148974
+E         Finished migration AddApiKeysTable1724951148974
+E         Starting migration CreateProcessedDataTable1726606152711
+E         Finished migration CreateProcessedDataTable1726606152711
+E         Starting migration SeparateExecutionCreationFromStart1727427440136
+E         Finished migration SeparateExecutionCreationFromStart1727427440136
+E         Starting migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+E         Finished migration AddMissingPrimaryKeyOnAnnotationTagMapping1728659839644
+E         Starting migration UpdateProcessedDataValueColumnToText1729607673464
+E         Finished migration UpdateProcessedDataValueColumnToText1729607673464
+E         Starting migration AddProjectIcons1729607673469
+E         Finished migration AddProjectIcons1729607673469
+E         Starting migration CreateTestDefinitionTable1730386903556
+E         Finished migration CreateTestDefinitionTable1730386903556
+E         Starting migration AddDescriptionToTestDefinition1731404028106
+E         Finished migration AddDescriptionToTestDefinition1731404028106
+E         Starting migration MigrateTestDefinitionKeyToString1731582748663
+E         Finished migration MigrateTestDefinitionKeyToString1731582748663
+E         Starting migration CreateTestMetricTable1732271325258
+E         Finished migration CreateTestMetricTable1732271325258
+E         Starting migration CreateTestRun1732549866705
+E         Finished migration CreateTestRun1732549866705
+E         Starting migration AddMockedNodesColumnToTestDefinition1733133775640
+E         Finished migration AddMockedNodesColumnToTestDefinition1733133775640
+E         Starting migration AddManagedColumnToCredentialsTable1734479635324
+E         Finished migration AddManagedColumnToCredentialsTable1734479635324
+E         Starting migration AddStatsColumnsToTestRun1736172058779
+E         Finished migration AddStatsColumnsToTestRun1736172058779
+E         Starting migration CreateTestCaseExecutionTable1736947513045
+E         Finished migration CreateTestCaseExecutionTable1736947513045
+E         Starting migration AddErrorColumnsToTestRuns1737715421462
+E         Finished migration AddErrorColumnsToTestRuns1737715421462
+E         Starting migration CreateFolderTable1738709609940
+E         Finished migration CreateFolderTable1738709609940
+E         Starting migration CreateAnalyticsTables1739549398681
+E         Finished migration CreateAnalyticsTables1739549398681
+E         Starting migration UpdateParentFolderIdColumn1740445074052
+E         Finished migration UpdateParentFolderIdColumn1740445074052
+E         Starting migration RenameAnalyticsToInsights1741167584277
+E         Finished migration RenameAnalyticsToInsights1741167584277
+E         Starting migration AddScopesColumnToApiKeys1742918400000
+E         Finished migration AddScopesColumnToApiKeys1742918400000
+E         Starting migration ClearEvaluation1745322634000
+E         Finished migration ClearEvaluation1745322634000
+E         Starting migration AddWorkflowStatisticsRootCount1745587087521
+E         Finished migration AddWorkflowStatisticsRootCount1745587087521
+E         Starting migration AddWorkflowArchivedColumn1745934666076
+E         Finished migration AddWorkflowArchivedColumn1745934666076
+E         Starting migration DropRoleTable1745934666077
+E         Finished migration DropRoleTable1745934666077
+E         Starting migration AddProjectDescriptionColumn1747824239000
+E         Finished migration AddProjectDescriptionColumn1747824239000
+E         Starting migration AddLastActiveAtColumnToUser1750252139166
+E         Finished migration AddLastActiveAtColumnToUser1750252139166
+E         Starting migration AddScopeTables1750252139166
+E         Finished migration AddScopeTables1750252139166
+E         Starting migration AddRolesTables1750252139167
+E         Finished migration AddRolesTables1750252139167
+E         Starting migration LinkRoleToUserTable1750252139168
+E         Finished migration LinkRoleToUserTable1750252139168
+E         Starting migration RemoveOldRoleColumn1750252139170
+E         Finished migration RemoveOldRoleColumn1750252139170
+E         Starting migration AddInputsOutputsToTestCaseExecution1752669793000
+E         Finished migration AddInputsOutputsToTestCaseExecution1752669793000
+E         Starting migration LinkRoleToProjectRelationTable1753953244168
+E         Finished migration LinkRoleToProjectRelationTable1753953244168
+E         Starting migration CreateDataStoreTables1754475614601
+E         Finished migration CreateDataStoreTables1754475614601
+E         Starting migration ReplaceDataStoreTablesWithDataTables1754475614602
+E         Finished migration ReplaceDataStoreTablesWithDataTables1754475614602
+E         Starting migration AddTimestampsToRoleAndRoleIndexes1756906557570
+E         Finished migration AddTimestampsToRoleAndRoleIndexes1756906557570
+E         Starting migration AddAudienceColumnToApiKeys1758731786132
+E         Finished migration AddAudienceColumnToApiKeys1758731786132
+E         Starting migration AddProjectIdToVariableTable1758794506893
+E         Finished migration AddProjectIdToVariableTable1758794506893
+E         Starting migration ChangeValueTypesForInsights1759399811000
+E         Finished migration ChangeValueTypesForInsights1759399811000
+E         Starting migration CreateChatHubTables1760019379982
+E         Finished migration CreateChatHubTables1760019379982
+E         Starting migration CreateChatHubAgentTable1760020000000
+E         Finished migration CreateChatHubAgentTable1760020000000
+E         Starting migration UniqueRoleNames1760020838000
+E         Finished migration UniqueRoleNames1760020838000
+E         Starting migration CreateOAuthEntities1760116750277
+E         Finished migration CreateOAuthEntities1760116750277
+E         Starting migration CreateWorkflowDependencyTable1760314000000
+E         Finished migration CreateWorkflowDependencyTable1760314000000
+E         Starting migration DropUnusedChatHubColumns1760965142113
+E         Finished migration DropUnusedChatHubColumns1760965142113
+E         Starting migration AddWorkflowVersionColumn1761047826451
+E         Finished migration AddWorkflowVersionColumn1761047826451
+E         Starting migration ChangeDependencyInfoToJson1761655473000
+E         Finished migration ChangeDependencyInfoToJson1761655473000
+E         Starting migration AddAttachmentsToChatHubMessages1761773155024
+E         Finished migration AddAttachmentsToChatHubMessages1761773155024
+E         Starting migration AddToolsColumnToChatHubTables1761830340990
+E         Finished migration AddToolsColumnToChatHubTables1761830340990
+E         Starting migration AddWorkflowDescriptionColumn1762177736257
+E         Finished migration AddWorkflowDescriptionColumn1762177736257
+E         Starting migration BackfillMissingWorkflowHistoryRecords1762763704614
+E         Finished migration BackfillMissingWorkflowHistoryRecords1762763704614
+E         Starting migration AddIsGlobalColumnToCredentialsTable1762771954619
+E         Finished migration AddIsGlobalColumnToCredentialsTable1762771954619
+E         Starting migration AddWorkflowHistoryAutoSaveFields1762847206508
+E         Finished migration AddWorkflowHistoryAutoSaveFields1762847206508
+E         Starting migration AddActiveVersionIdColumn1763047800000
+E         Finished migration AddActiveVersionIdColumn1763047800000
+E         Starting migration ActivateExecuteWorkflowTriggerWorkflows1763048000000
+E         Finished migration ActivateExecuteWorkflowTriggerWorkflows1763048000000
+E         Starting migration ChangeOAuthStateColumnToUnboundedVarchar1763572724000
+E         Finished migration ChangeOAuthStateColumnToUnboundedVarchar1763572724000
+E         Starting migration CreateBinaryDataTable1763716655000
+E         Finished migration CreateBinaryDataTable1763716655000
+E         Starting migration CreateWorkflowPublishHistoryTable1764167920585
+E         Finished migration CreateWorkflowPublishHistoryTable1764167920585
+E         Starting migration AddCreatorIdToProjectTable1764276827837
+E         Finished migration AddCreatorIdToProjectTable1764276827837
+E         Starting migration CreateDynamicCredentialResolverTable1764682447000
+E         Finished migration CreateDynamicCredentialResolverTable1764682447000
+E         Starting migration AddDynamicCredentialEntryTable1764689388394
+E         Finished migration AddDynamicCredentialEntryTable1764689388394
+E         Starting migration AddResolvableFieldsToCredentials1764689448000
+E         Finished migration AddResolvableFieldsToCredentials1764689448000
+E         Starting migration BackfillMissingWorkflowHistoryRecords1765448186933
+E         Finished migration BackfillMissingWorkflowHistoryRecords1765448186933
+E         Starting migration AddIconToAgentTable1765788427674
+E         Finished migration AddIconToAgentTable1765788427674
+E         Starting migration AddAgentIdForeignKeys1765886667897
+E         Finished migration AddAgentIdForeignKeys1765886667897
+E         Starting migration AddWorkflowVersionIdToExecutionData1765892199653
+E         Finished migration AddWorkflowVersionIdToExecutionData1765892199653
+E         Starting migration AddWorkflowPublishScopeToProjectRoles1766064542000
+E         Added workflow:publish scope to project roles with workflow:update
+E         Finished migration AddWorkflowPublishScopeToProjectRoles1766064542000
+E         Starting migration AddChatMessageIndices1766068346315
+E         Finished migration AddChatMessageIndices1766068346315
+E         Starting migration ChangeWorkflowStatisticsFKToNoAction1767018516000
+E         Finished migration ChangeWorkflowStatisticsFKToNoAction1767018516000
+E         Starting migration ExpandModelColumnLength1768402473068
+E         Finished migration ExpandModelColumnLength1768402473068
+E         Starting migration AddStoredAtToExecutionEntity1768557000000
+E         Finished migration AddStoredAtToExecutionEntity1768557000000
+E         Starting migration AddDynamicCredentialUserEntryTable1768901721000
+E         Finished migration AddDynamicCredentialUserEntryTable1768901721000
+E         Starting migration AddPublishedVersionIdToWorkflowDependency1769000000000
+E         Finished migration AddPublishedVersionIdToWorkflowDependency1769000000000
+E         Starting migration CreateSecretsProviderConnectionTables1769433700000
+E         Finished migration CreateSecretsProviderConnectionTables1769433700000
+E         Starting migration CreateWorkflowPublishedVersionTable1769698710000
+E         Finished migration CreateWorkflowPublishedVersionTable1769698710000
+E         Starting migration ExpandSubjectIDColumnLength1769784356000
+E         Finished migration ExpandSubjectIDColumnLength1769784356000
+E         Starting migration AddWorkflowUnpublishScopeToCustomRoles1769900001000
+E         Finished migration AddWorkflowUnpublishScopeToCustomRoles1769900001000
+E         n8n Task Broker ready on 127.0.0.1, port 5679
+E         Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode
+E         "--id" has to be set!
+E         
+E       assert 'report.csv' in 'No encryption key found - Auto-generating and saving to: /home/user/.n8n/.n8n/config\nMigrations in progress, please ...l mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode\n"--id" has to be set!\n'
+
+tests/test_final_state.py:27: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_final_state.py::test_workflow_file_exists - AssertionError:...
+FAILED tests/test_final_state.py::test_workflow_execution - AssertionError: E...
+============================== 2 failed in 12.04s ==============================

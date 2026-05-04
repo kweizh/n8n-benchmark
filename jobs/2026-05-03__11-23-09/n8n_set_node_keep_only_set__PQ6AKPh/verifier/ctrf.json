@@ -1,0 +1,92 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 0,
+            "failed": 6,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777779041.4637675,
+            "stop": 1777779041.639644
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists_and_valid",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0012431719806045294,
+                "start": 1777779041.592235,
+                "stop": 1777779041.6156023,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_file_exists_and_valid():\n>       get_workflow_json()\n\ntests/test_final_state.py:16: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_trigger_node",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006604380905628204,
+                "start": 1777779041.6158705,
+                "stop": 1777779041.6204863,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_contains_trigger_node():\n>       workflow = get_workflow_json()\n                   ^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:19: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_code_node",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006230887956917286,
+                "start": 1777779041.6207213,
+                "stop": 1777779041.625643,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_contains_code_node():\n>       workflow = get_workflow_json()\n                   ^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:25: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_set_node_with_keep_only_set",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0006178333424031734,
+                "start": 1777779041.6258764,
+                "stop": 1777779041.630178,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_contains_set_node_with_keep_only_set():\n>       workflow = get_workflow_json()\n                   ^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:41: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_set_node_keeps_required_fields",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005948429461568594,
+                "start": 1777779041.6304302,
+                "stop": 1777779041.6347244,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_set_node_keeps_required_fields():\n>       workflow = get_workflow_json()\n                   ^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:60: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_connections",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.0005913369823247194,
+                "start": 1777779041.6349516,
+                "stop": 1777779041.6394422,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_connections():\n>       workflow = get_workflow_json()\n                   ^^^^^^^^^^^^^^^^^^^\n\ntests/test_final_state.py:80: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\n    def get_workflow_json():\n>       assert os.path.isfile(WORKFLOW_FILE), f\"Workflow file {WORKFLOW_FILE} does not exist.\"\nE       AssertionError: Workflow file /home/user/workspace/workflow.json does not exist.\nE       assert False\nE        +  where False = <function isfile at 0x73ca73c50220>('/home/user/workspace/workflow.json')\nE        +    where <function isfile at 0x73ca73c50220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:8: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}
