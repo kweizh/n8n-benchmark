@@ -1,0 +1,25 @@
+# Compress Multiple Files into a ZIP Archive in n8n
+
+## Background
+You need to package multiple files into a single ZIP archive using n8n. The Compression node allows you to combine multiple binary properties from a single item into a ZIP file.
+
+## Requirements
+- Create an n8n workflow that triggers manually.
+- Read two files from the local filesystem: `/home/user/file1.txt` and `/home/user/file2.txt`.
+- Place the first file into a binary property named `file1` and the second into `file2` on the same item.
+- Compress both files into a single ZIP archive named `archive.zip` using the Compression node.
+- Write the resulting ZIP archive to `/home/user/output/archive.zip`.
+- The final workflow must be saved to `/home/user/workflow.json`.
+
+## Implementation Guide
+1. Use a Manual Trigger node.
+2. Use the `Read/Write Files from Disk` node to read `/home/user/file1.txt` into the binary property `file1`.
+3. Use a second `Read/Write Files from Disk` node to read `/home/user/file2.txt` into the binary property `file2`.
+4. Use the `Compression` node to compress `file1,file2` into `archive.zip` (Output Format: Zip). Set the output binary property to `data`.
+5. Use a final `Read/Write Files from Disk` node to write the `data` property to `/home/user/output/archive.zip`.
+6. Export the workflow to `/home/user/workflow.json` using the n8n CLI: `n8n export:workflow --all --output=/home/user/workflow.json`.
+
+## Constraints
+- Project path: /home/user
+- n8n is running on port 5678.
+- Do not change the original files.

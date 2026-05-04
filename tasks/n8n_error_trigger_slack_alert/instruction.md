@@ -1,0 +1,20 @@
+# n8n Error Trigger with Slack Alert
+
+## Background
+We want to set up a global error handler in n8n that catches workflow failures and sends an alert to a Slack channel. You need to construct the n8n workflow JSON file.
+
+## Requirements
+- Create an n8n workflow file at `/home/user/workspace/error_workflow.json`.
+- The workflow must contain an Error Trigger node (`n8n-nodes-base.errorTrigger`).
+- The Error Trigger node must be connected to a Slack node (`n8n-nodes-base.slack`).
+- The Slack node must be configured to send a message (operation: `post`, resource: `message`) to the channel `#error-alerts-${lowercase_trial_id}` (where `${lowercase_trial_id}` is the lowercase value read from `/logs/artifacts/trial_id`).
+- The Slack message text must be exactly: `Error in execution {{ $json.execution.id }}`.
+- The Slack node must use a credential named `Slack Bot` (the verifier will create this credential and inject it).
+
+## Constraints
+- Project path: /home/user/workspace
+- Do not start n8n or run any services. Only create the valid `error_workflow.json` file.
+- Ensure the JSON structure matches n8n's workflow schema (it should have `nodes` and `connections` arrays).
+
+## Integrations
+- Slack

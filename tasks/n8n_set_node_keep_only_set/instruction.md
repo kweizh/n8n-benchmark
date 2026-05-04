@@ -1,0 +1,30 @@
+# n8n Set Node: Keep Only Set
+
+## Background
+In n8n, workflows often process large JSON objects containing sensitive or unnecessary data. The `Set` node (or "Edit Fields" node) is used to reshape data by keeping only the fields you need.
+
+## Requirements
+- Create an n8n workflow file at `/home/user/workspace/workflow.json`.
+- The workflow must contain a **Manual Trigger** node (`n8n-nodes-base.manualTrigger`).
+- The workflow must contain a **Code** node (`n8n-nodes-base.code`) that outputs the following mock data (a single item):
+  ```json
+  {
+    "user_id": 123,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password_hash": "hashed_password",
+    "created_at": "2023-01-01T00:00:00Z"
+  }
+  ```
+- The workflow must contain a **Set** node (`n8n-nodes-base.set`) connected to the Code node.
+- The Set node must be configured to **keep only** the `user_id`, `name`, and `email` fields, discarding `password_hash` and `created_at`.
+
+## Implementation Guide
+1. Create `/home/user/workspace/workflow.json`.
+2. Define the `nodes` array with the three required nodes.
+3. Set the `keepOnlySet` parameter to `true` on the Set node (or use the equivalent setting in newer n8n versions, like `options.keepOnlySet` or `parameters.keepOnlySet`) and map the required fields (`user_id`, `name`, `email`).
+4. Ensure the `connections` are properly set up (Trigger -> Code -> Set).
+
+## Constraints
+- Project path: `/home/user/workspace`
+- The file must be valid JSON.
