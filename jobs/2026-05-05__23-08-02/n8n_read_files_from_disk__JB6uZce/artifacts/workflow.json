@@ -1,0 +1,75 @@
+{
+  "name": "Read Files from Disk Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "e2d8e4e0-7d1a-4b0e-8f1a-5d1a4b0e8f1a",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "read",
+        "fileSelector": "/home/user/data/*"
+      },
+      "id": "f2d8e4e0-7d1a-4b0e-8f1a-5d1a4b0e8f1b",
+      "name": "Read/Write Files from Disk",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        300,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "for (const item of $input.all()) {\n  item.json.fileName = item.binary.data.fileName;\n}\nreturn $input.all();"
+      },
+      "id": "g2d8e4e0-7d1a-4b0e-8f1a-5d1a4b0e8f1c",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        500,
+        200
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read/Write Files from Disk",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read/Write Files from Disk": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "f7d8e4e0-7d1a-4b0e-8f1a-5d1a4b0e8f1d",
+  "meta": {
+    "instanceId": "h7d8e4e0-7d1a-4b0e-8f1a-5d1a4b0e8f1e"
+  }
+}

@@ -1,0 +1,47 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 3,
+            "passed": 3,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777993816.0899856,
+            "stop": 1777993816.1104712
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_final_exists",
+                "status": "passed",
+                "duration": 0.0005710008554160595,
+                "start": 1777993816.107552,
+                "stop": 1777993816.1083941,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_crypto_node_configured_correctly",
+                "status": "passed",
+                "duration": 0.0005475881043821573,
+                "start": 1777993816.1086116,
+                "stop": 1777993816.1093636,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_connections_updated_correctly",
+                "status": "passed",
+                "duration": 0.000560329994186759,
+                "start": 1777993816.1095657,
+                "stop": 1777993816.1102755,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

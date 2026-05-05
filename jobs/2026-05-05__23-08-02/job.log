@@ -1,0 +1,1419 @@
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_edit_image_node_resize__w3FcjFn > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Edit Image Node Resize
+
+## Background
+n8n is a powerful workflow automation tool. You need to create a workflow that reads an image file from disk, resizes it using the Edit Image node, and writes it back to disk.
+
+## Requirements
+- The workflow must start with a Manual Trigger node.
+- Read an image file from `/home/node/input.png` using the `n8n-nodes-base.readWriteFile` node (Operation: Read).
+- The binary data property from the read node should be named `data`.
+- Use the `n8n-nodes-base.editImage` node to resize the image.
+- Set the width and height to 100x100 pixels.
+- Set the resize option to "Maximum Area" (`maximumArea`).
+- Write the resized image to `/home/node/output.png` using the `n8n-nodes-base.readWriteFile` node (Operation: Write).
+- Save the workflow to `/home/node/workflow.json`.
+
+## Implementation Guide
+1. Create the workflow JSON structure with the required nodes.
+2. The Manual Trigger node should have type `n8n-nodes-base.manualTrigger`.
+3. The Read File node should have type `n8n-nodes-base.readWriteFile`, operation `read`, and `fileSelector` set to `/home/node/input.png`.
+4. The Edit Image node should have type `n8n-nodes-base.editImage`, operation `resize`, `width` 100, `height` 100, and `resizeOption` `maximumArea`.
+5. The Write File node should have type `n8n-nodes-base.readWriteFile`, operation `write`, `fileName` `/home/node/output.png`, and `dataPropertyName` `data`.
+6. Connect the nodes in sequence: Manual Trigger -> Read File -> Edit Image -> Write File.
+7. Save the JSON to `/home/node/workflow.json`.
+
+## Constraints
+- Project path: /home/node
+- Log file: /home/node/output.log
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_crypto_node_hash__BjmvVYQ > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Hash String with Crypto Node in n8n
+
+## Background
+You have an existing n8n workflow at `/home/user/workflow.json`. It contains a Manual Trigger node and an Edit Fields (Set) node that outputs a field called `inputString` with the value `n8n_is_awesome`. Your task is to add a Crypto node to the workflow to generate an MD5 hash of this string.
+
+## Requirements
+- Add a Crypto node to the workflow.
+- Connect the Edit Fields node to the Crypto node.
+- Configure the Crypto node to generate an MD5 hash of the `inputString` field.
+- The hash must be encoded as `HEX`.
+- Write the resulting hash to a new property named `md5_hash`.
+- Save the updated workflow to `/home/user/workflow_final.json`.
+
+## Implementation Guide
+1. Read the existing workflow from `/home/user/workflow.json`.
+2. Add a new node of type `n8n-nodes-base.crypto`.
+3. Configure its parameters: `action: "hash"`, `type: "MD5"`, `value: "={{ $json.inputString }}"`, `dataPropertyName: "md5_hash"`, `encoding: "hex"`.
+4. Update the `connections` object so that the output of the Edit Fields node connects to the input of the new Crypto node.
+5. Save the updated JSON to `/home/user/workflow_final.json`.
+
+## Constraints
+- Project path: /home/user
+- Do not modify the existing nodes' parameters or IDs.
+- Ensure the final file is valid JSON.
+EOF
+Running command: echo n8n_compress_extract_zip__TZAvVZQ > /logs/artifacts/trial_id
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Compress Multiple Files into a ZIP Archive in n8n
+
+## Background
+You need to package multiple files into a single ZIP archive using n8n. The Compression node allows you to combine multiple binary properties from a single item into a ZIP file.
+
+## Requirements
+- Create an n8n workflow that triggers manually.
+- Read two files from the local filesystem: `/home/user/file1.txt` and `/home/user/file2.txt`.
+- Place the first file into a binary property named `file1` and the second into `file2` on the same item.
+- Compress both files into a single ZIP archive named `archive.zip` using the Compression node.
+- Write the resulting ZIP archive to `/home/user/output/archive.zip`.
+- The final workflow must be saved to `/home/user/workflow.json`.
+
+## Implementation Guide
+1. Use a Manual Trigger node.
+2. Use the `Read/Write Files from Disk` node to read `/home/user/file1.txt` into the binary property `file1`.
+3. Use a second `Read/Write Files from Disk` node to read `/home/user/file2.txt` into the binary property `file2`.
+4. Use the `Compression` node to compress `file1,file2` into `archive.zip` (Output Format: Zip). Set the output binary property to `data`.
+5. Use a final `Read/Write Files from Disk` node to write the `data` property to `/home/user/output/archive.zip`.
+6. Export the workflow to `/home/user/workflow.json` using the n8n CLI: `n8n export:workflow --all --output=/home/user/workflow.json`.
+
+## Constraints
+- Project path: /home/user
+- n8n is running on port 5678.
+- Do not change the original files.
+EOF
+Running command: echo n8n_cron_trigger_database_cleanu__PjwUP2U > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Database Cleanup with n8n
+
+## Background
+You need to automate the cleanup of old logs in a PostgreSQL database using an n8n workflow. The workflow should run on a daily schedule and delete records older than 30 days.
+
+## Requirements
+1. Start the necessary services (PostgreSQL and n8n) by running `/home/user/n8n-task/start.sh`.
+2. Create an n8n workflow named `Database Cleanup Workflow`.
+3. The workflow must contain a Schedule Trigger node (`n8n-nodes-base.scheduleTrigger`) configured to run daily at 3:00 AM (using the cron expression `0 3 * * *`).
+4. The workflow must contain a Postgres node (`n8n-nodes-base.postgres`) connected to the Schedule Trigger.
+5. The Postgres node must use the `executeQuery` operation to execute the following SQL query: `DELETE FROM logs WHERE created_at < NOW() - INTERVAL '30 days';`.
+6. The Postgres node must be configured to use a credential named `postgres_creds` connecting to `localhost:5432` with database `n8n_db`, user `n8n_user`, and password `n8n_pass`.
+7. Save and activate the workflow. Since you are running headless, you can use the n8n CLI (`n8n import:workflow`, `n8n import:credentials`) or the n8n REST API to create and activate the workflow.
+
+## Constraints
+- Project path: `/home/user/n8n-task`
+- Start command: `/home/user/n8n-task/start.sh`
+- The n8n instance runs on port 5678.
+
+## Integrations
+- None
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo merge_node_wait_both_branches__CnbsQ6u > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Wait for Both Branches in n8n
+
+## Background
+In n8n, workflows often split into parallel branches to perform asynchronous tasks. To synchronize these branches, a Merge node is used to wait for all parallel paths to complete before continuing the workflow.
+
+## Requirements
+Create an n8n workflow that splits into two branches and waits for both to complete before proceeding.
+1. Start with a **Manual Trigger** node.
+2. Branch into two parallel paths from the trigger.
+3. In Branch 1, add a node (e.g., Code or Set) that outputs the JSON: `{"branch": "A"}`.
+4. In Branch 2, add a node (e.g., Code or Set) that outputs the JSON: `{"branch": "B"}`.
+5. Add a **Merge** node that takes input from both branches. Configure it to wait for both inputs to arrive and then output the data from Branch 1.
+6. Save the exported workflow JSON to `/home/user/workspace/workflow.json`.
+7. The workflow JSON must have its `id` set to `"test-workflow"` at the root level.
+
+## Implementation Guide
+1. You can start n8n locally by running `n8n start` in the background (e.g., `n8n start &`).
+2. Access the n8n UI at `http://localhost:5678` to build the workflow.
+3. Create the nodes as specified and connect them.
+4. For the Merge node, ensure it is configured to wait for both inputs to arrive and outputs the data from Branch 1.
+5. Download or export the workflow JSON.
+6. Ensure the root level of the JSON has `"id": "test-workflow"`.
+7. Save it to `/home/user/workspace/workflow.json`.
+
+## Constraints
+- Project path: `/home/user/workspace`
+- Output file: `/home/user/workspace/workflow.json`
+- The workflow must successfully execute using `n8n execute --id=test-workflow` and output the expected data.
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_http_request_basic_auth__WFwxKuS > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n HTTP Request with Basic Auth
+
+## Background
+You are building an n8n workflow that needs to fetch data from a protected API using Basic Authentication.
+
+## Requirements
+- Create a workflow file at `/home/user/n8n-project/workflow.json`.
+- The workflow must contain exactly one `n8n-nodes-base.httpRequest` node named `HTTP Request`.
+- The node must be configured to make a `GET` request to `https://httpbin.org/basic-auth/admin/secret`.
+- The node must use `genericCredentialType` authentication and `httpBasicAuth` generic auth type.
+- You must create a credentials file at `/home/user/n8n-project/credentials.json` containing the Basic Auth credentials. The file should contain a JSON array with one credential object. The credential must have `type` set to `httpBasicAuth` and its `data` must contain the username `admin` and password `secret`.
+
+## Constraints
+- Project path: `/home/user/n8n-project`
+- Do not start the n8n server. Just create the JSON files.
+EOF
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_move_binary_data_to_json__6T5B4Yb > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Extract Text from Binary File in n8n
+
+## Background
+You have an n8n workflow that reads a text file into a binary property. You need to extract this text and store it in the JSON payload, then write the resulting JSON to a new file.
+
+## Requirements
+- Modify the workflow at `/home/user/workspace/workflow.json`.
+- The workflow currently reads `/home/user/workspace/input.txt` into a binary property named `data`.
+- Extract the text content from the binary property `data` and put it into a JSON property named `extractedText`.
+- Convert the resulting JSON item into a binary file.
+- Write the binary file to `/home/user/workspace/output.json`.
+
+## Implementation Guide
+1. You can use the `n8n` CLI to test your workflow: `n8n import:workflow --input=/home/user/workspace/workflow.json` then `n8n execute --id=my-test-workflow-123`.
+2. You can edit the `workflow.json` file directly or start n8n (`n8n start`), import the workflow, edit it in the UI (http://localhost:5678), and export it back to `/home/user/workspace/workflow.json`.
+3. Make sure the final node writes to `/home/user/workspace/output.json`.
+
+## Constraints
+- Project path: `/home/user/workspace`
+- The final output file `/home/user/workspace/output.json` must contain `extractedText` with the content of `input.txt`.
+- You must use n8n nodes (e.g., 'Extract From File', 'Convert to File', 'Code', 'Read/Write Files from Disk') to achieve this.
+
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_json_to_binary_data_csv__E5MA6AQ > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Convert JSON to CSV Binary in n8n
+
+## Background
+You need to create an n8n workflow that converts a JSON array into a CSV binary file. n8n represents workflows as JSON files.
+
+## Requirements
+- Create an n8n workflow and save it as `/home/node/workflow.json`.
+- The workflow must contain exactly three nodes:
+  1. A "Manual Trigger" node (type: `n8n-nodes-base.manualTrigger`).
+  2. A "Code" node (type: `n8n-nodes-base.code`) that outputs a JSON array with two items:
+     `[{"id": 1, "name": "Alice"}, {"id": 2, "name": "Bob"}]`
+  3. A "Convert to File" node (type: `n8n-nodes-base.convertToFile` or `n8n-nodes-base.converttofile`) that takes the output of the Code node and converts it to a CSV binary file.
+- The "Convert to File" node must be configured to output a CSV file named `users.csv` in the binary property `data`.
+- The nodes must be properly connected in the `connections` object: `Manual Trigger` -> `Code` -> `Convert to File`.
+
+## Implementation Guide
+- Write the workflow JSON directly to `/home/node/workflow.json`.
+- Ensure the JSON structure matches n8n's workflow schema (with `nodes` and `connections` arrays/objects).
+
+## Constraints
+- Project path: /home/node
+- Output file: /home/node/workflow.json
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_python_node_luxon_date_math__67Mheqc > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Python Code Node Date Math
+
+## Background
+You are working with an n8n workflow exported to `/home/user/workflow.json`. This workflow contains a Python Code node that needs to calculate the difference in days between two dates.
+
+## Requirements
+- The workflow file `/home/user/workflow.json` contains a node named "Calculate Days".
+- Update the `pythonCode` parameter of the "Calculate Days" node to calculate the number of days between `startDate` and `endDate`.
+- Both dates are provided in the input JSON in `YYYY-MM-DD` format (e.g., `2023-10-01`).
+- The output of the Code node must include all original fields from the input item, plus a new field `days_difference` containing the integer number of days (`endDate` - `startDate`).
+- The code must be valid Python 3 and adhere to n8n's Python Code node data structure (return a list of dictionaries with a `json` key).
+
+## Implementation Guide
+1. Read `/home/user/workflow.json`.
+2. Locate the node with the name "Calculate Days" and type "n8n-nodes-base.code".
+3. Write the Python code to process `_input.all()`. For each item, read `startDate` and `endDate` from `item['json']`, calculate the difference in days using Python's `datetime` module, and store it in `item['json']['days_difference']`.
+4. Update the `pythonCode` property of that node with your new Python code.
+5. Save the modified `workflow.json` back to `/home/user/workflow.json`.
+
+## Constraints
+- Project path: /home/user
+- Do not change the node's name or type.
+- Use standard Python libraries available in n8n (like `datetime`).
+- Do not change the structure of other nodes in the workflow.
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_execute_command_node__rnxw42M > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Execute Command Node
+
+## Background
+In n8n, the Execute Command node allows you to run shell commands on the host machine. Often, these commands output JSON strings that need to be parsed into proper n8n items for subsequent nodes to process.
+
+## Requirements
+- Create an n8n workflow that uses an Execute Command node to run a pre-existing shell script.
+- The script is located at `/home/node/script.sh` and outputs a JSON string to standard output.
+- After the Execute Command node, add a Code node that parses the `stdout` from the previous node and returns it as a valid n8n item (an array of objects with a `json` key).
+- Save the workflow as a JSON file to `/home/node/workflow.json`.
+
+## Implementation Guide
+1. The Execute Command node should have its `command` parameter set to `/home/node/script.sh`.
+2. The Code node should take the `stdout` from the Execute Command node's output, parse it using `JSON.parse()`, and return it in the format `[{ json: parsedData }]`.
+3. The workflow JSON should contain the `nodes` and `connections` arrays defining this flow.
+
+## Constraints
+- Project path: `/home/node`
+- The script `/home/node/script.sh` already exists and is executable.
+- The workflow file must be saved to `/home/node/workflow.json`.
+
+## Integrations
+- None
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_error_trigger_slack_alert__kMJENHY > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Error Trigger with Slack Alert
+
+## Background
+We want to set up a global error handler in n8n that catches workflow failures and sends an alert to a Slack channel. You need to construct the n8n workflow JSON file.
+
+## Requirements
+- Create an n8n workflow file at `/home/user/workspace/error_workflow.json`.
+- The workflow must contain an Error Trigger node (`n8n-nodes-base.errorTrigger`).
+- The Error Trigger node must be connected to a Slack node (`n8n-nodes-base.slack`).
+- The Slack node must be configured to send a message (operation: `post`, resource: `message`) to the channel `#error-alerts-${lowercase_trial_id}` (where `${lowercase_trial_id}` is the lowercase value read from `/logs/artifacts/trial_id`).
+- The Slack message text must be exactly: `Error in execution {{ $json.execution.id }}`.
+- The Slack node must use a credential named `Slack Bot` (the verifier will create this credential and inject it).
+
+## Constraints
+- Project path: /home/user/workspace
+- Do not start n8n or run any services. Only create the valid `error_workflow.json` file.
+- Ensure the JSON structure matches n8n's workflow schema (it should have `nodes` and `connections` arrays).
+
+## Integrations
+- Slack
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_read_csv_and_split_batches__TnU2DNX > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# Read CSV and Split into Batches
+
+## Background
+Create an n8n workflow that reads a local CSV file, parses the data, and splits it into batches of 10 items. This is a common pattern for processing large datasets without overloading memory or API rate limits.
+
+## Requirements
+- Create an n8n workflow JSON file at `/home/user/myproject/workflow.json`.
+- The workflow must include a `Read/Write Files from Disk` node to read the file `/home/user/myproject/data.csv`.
+- The workflow must include an `Extract From File` node to parse the CSV binary data into JSON items.
+- The workflow must include a `Split In Batches` (or `Loop Over Items`) node to split the parsed items into batches of 10.
+- The nodes must be properly connected in sequence.
+
+## Implementation Guide
+1. Create a valid n8n workflow JSON structure (an object with a `nodes` array and `connections` object).
+2. Add a `Manual Trigger` node (type `n8n-nodes-base.manualTrigger`) to start the workflow.
+3. Add a `Read/Write Files from Disk` node (type `n8n-nodes-base.readWriteFile`) with the operation set to read `/home/user/myproject/data.csv`.
+4. Add an `Extract From File` node (type `n8n-nodes-base.extractFromFile`) configured to extract from CSV.
+5. Add a `Split In Batches` node (type `n8n-nodes-base.splitInBatches`) with `batchSize` set to 10.
+6. Ensure the `connections` object links the nodes in the correct order: Manual Trigger -> Read/Write Files from Disk -> Extract From File -> Split In Batches.
+
+## Constraints
+- Project path: `/home/user/myproject`
+- The output must be a valid n8n workflow JSON file named `workflow.json`.
+- Do not run the workflow, just create the JSON definition.
+
+## Integrations
+- None
+EOF
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_set_node_keep_only_set__ntDCFoD > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Set Node: Keep Only Set
+
+## Background
+In n8n, workflows often process large JSON objects containing sensitive or unnecessary data. The `Set` node (or "Edit Fields" node) is used to reshape data by keeping only the fields you need.
+
+## Requirements
+- Create an n8n workflow file at `/home/user/workspace/workflow.json`.
+- The workflow must contain a **Manual Trigger** node (`n8n-nodes-base.manualTrigger`).
+- The workflow must contain a **Code** node (`n8n-nodes-base.code`) that outputs the following mock data (a single item):
+  ```json
+  {
+    "user_id": 123,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password_hash": "hashed_password",
+    "created_at": "2023-01-01T00:00:00Z"
+  }
+  ```
+- The workflow must contain a **Set** node (`n8n-nodes-base.set`) connected to the Code node.
+- The Set node must be configured to **keep only** the `user_id`, `name`, and `email` fields, discarding `password_hash` and `created_at`.
+
+## Implementation Guide
+1. Create `/home/user/workspace/workflow.json`.
+2. Define the `nodes` array with the three required nodes.
+3. Set the `keepOnlySet` parameter to `true` on the Set node (or use the equivalent setting in newer n8n versions, like `options.keepOnlySet` or `parameters.keepOnlySet`) and map the required fields (`user_id`, `name`, `email`).
+4. Ensure the `connections` are properly set up (Trigger -> Code -> Set).
+
+## Constraints
+- Project path: `/home/user/workspace`
+- The file must be valid JSON.
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: echo n8n_xml_to_json_conversion__cQRbVq8 > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n XML to JSON Conversion
+
+## Background
+In this task, you will configure an n8n workflow that triggers manually, provides some XML data, and then uses the XML node to convert that data into a JSON object.
+
+## Requirements
+- Create an n8n workflow file at `/home/user/workflow.json`.
+- The workflow should start with a `Manual Trigger` node.
+- Followed by a `Code` node that outputs an item with a `data` property containing the following XML string: `<root><user><id>1</id><name>Alice</name></user></root>`.
+- Followed by an `XML` node configured to convert the XML in the `data` property into JSON.
+- The final output of the XML node should be a JSON object with the structure parsed from the XML.
+
+## Implementation
+1. Write the workflow JSON to `/home/user/workflow.json`.
+2. You can use the n8n CLI to test your workflow if needed: `n8n execute --file /home/user/workflow.json`.
+
+## Constraints
+- Project path: /home/user
+- Do not start the n8n server, just create the workflow file.
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Running command: apt-get update && apt-get install -y curl ripgrep
+Running command: apt-get update && apt-get install -y curl ripgrep
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: set -euo pipefail; curl -fsSL https://getpochi.com/install.sh | bash  && mkdir -p /logs/agent/pochi && ~/.pochi/bin/pochi --version
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Running command: ln -sf ~/.pochi/bin/pochi /usr/local/bin/pochi
+Command outputs captured
+Command outputs captured
+Running command: echo n8n_switch_node_routing__XaoA7ws > /logs/artifacts/trial_id
+Running command: echo n8n_read_files_from_disk__JB6uZce > /logs/artifacts/trial_id
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p ~/.pochi && cat << 'EOF' | sed -e "s/OPENAI_API_KEY/${OPENAI_API_KEY}/g" -e "s/DEEPINFRA_API_KEY/${DEEPINFRA_API_KEY}/g" -e "s/ANTHROPIC_API_KEY/${ANTHROPIC_API_KEY}/g" > ~/.pochi/config.jsonc
+{
+  "providers": {
+    "deepinfra": {
+      "kind": "openai",
+      "baseURL": "https://api.deepinfra.com/v1/openai",
+      "apiKey": "DEEPINFRA_API_KEY",
+      "models": {
+        "zai-org/GLM-4.7-Flash": {
+          "name": "glm-4.7-flash"
+        },
+        "moonshotai/Kimi-K2.6": {
+          "name": "kimi-K2.6"
+        },
+        "deepseek-ai/DeepSeek-V4-Pro": {
+          "name": "DeepSeek-V4-Pro"
+        }
+      }
+    },
+    "anthropic": {
+      "kind": "openai",
+      "baseURL": "https://api.anthropic.com/v1",
+      "apiKey": "ANTHROPIC_API_KEY",
+      "models": {
+        "claude-opus-4-6": {
+          "name": "claude-opus-4-6"
+        }
+      }
+    },
+    "openai": {
+      "kind": "openai",
+      "baseURL": "https://api.openai.com/v1",
+      "apiKey": "OPENAI_API_KEY",
+      "models": {
+        "gpt-5.4": {
+          "name": "gpt-5.4"
+        }
+      }
+    }
+  }
+}
+EOF
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: mkdir -p /logs/artifacts
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Switch Node Routing
+
+## Background
+You have n8n installed globally. Create an n8n workflow that routes incoming webhook data using a Switch node based on a specific field, and returns a custom response.
+
+## Requirements
+1. Start n8n using `n8n start` (runs on port 5678) and open the UI in your browser.
+2. Create a new workflow with a **Webhook** node listening on `POST /webhook/route-items`.
+3. The Webhook node must be configured to respond using a "Respond to Webhook" node.
+4. Connect the Webhook node to a **Switch** node. The Switch node should evaluate the `status` field from the webhook body (e.g., `{{ $json.body.status }}`).
+5. The Switch node should have 4 outputs based on the `status` value:
+   - If `status` equals `active`, route to an **Edit Fields (Set)** node that sets `category = "A"`.
+   - If `status` equals `pending`, route to an **Edit Fields (Set)** node that sets `category = "B"`.
+   - If `status` equals `inactive`, route to an **Edit Fields (Set)** node that sets `category = "C"`.
+   - For any other value (fallback), route to an **Edit Fields (Set)** node that sets `category = "Unknown"`.
+6. All Edit Fields (Set) nodes must connect to a single **Respond to Webhook** node.
+7. The **Respond to Webhook** node should return the JSON from the Set node (which includes the `category` field).
+8. Save and **Activate** the workflow.
+9. Finally, export the workflow to `/home/user/workflow.json` using the command:
+   `n8n export:workflow --all --output=/home/user/workflow.json`
+
+## Constraints
+- Project path: /home/user
+- Exported file: /home/user/workflow.json
+- The Switch node must use the exact strings: "active", "pending", "inactive".
+- The Edit Fields (Set) nodes must set the `category` string exactly as specified ("A", "B", "C", "Unknown").
+EOF
+Command outputs captured
+Running command: export PATH="$HOME/.pochi/bin:$PATH"; pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --experimental-stream-trajectory /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Preserving your work
+
+Save a copy of files you create during this task to `/logs/artifacts/`. This directory is preserved after the run so outputs can be inspected. Organize with subdirectories if helpful (e.g., `/logs/artifacts/code/`, `/logs/artifacts/reports/`). The directory already exists and is writable.
+
+---
+
+# n8n Read Files from Disk
+
+## Background
+You have a local directory `/home/user/data` containing several files: `report.csv`, `summary.txt`, and `logo.png`.
+You need to create an n8n workflow that reads all these files from disk and returns an array of items where each item's JSON data contains the file's name in a property called `fileName`.
+
+## Requirements
+1. Create an n8n workflow that starts with a manual trigger.
+2. Use the "Read/Write Files from Disk" node to read all files from `/home/user/data`.
+3. Process the output so that each item's `json` object contains a `fileName` property with the name of the file (e.g., "report.csv").
+4. Save the workflow JSON to `/home/user/workflow.json`.
+
+## Implementation Guide
+1. Start n8n using `n8n start` and access the UI at `http://localhost:5678`.
+2. Create a new workflow.
+3. Add a "Manual Trigger" node.
+4. Add a "Read/Write Files from Disk" node. Configure it to read files from `/home/user/data/` (you may need to use a glob pattern like `*`).
+5. Depending on the node's output, you may need to use a "Code" node or "Set" node to extract the file name from the binary data metadata and place it into the `json.fileName` property.
+6. Save the workflow and export it to `/home/user/workflow.json`.
+
+## Constraints
+- Project path: /home/user
+- Log file: /home/user/output.log
+- Start command: `n8n start`
+- Port: 5678
+EOF
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Command outputs captured
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Running command: rm -f ~/.pochi/config.jsonc
+Command outputs captured
+The verifier.env contains an API key (often the case for LLM-based verifiers). You will incur costs associated with the API calls.
+Exception AgentTimeoutError is in exclude_exceptions, not retrying
+Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached

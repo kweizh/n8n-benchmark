@@ -1,0 +1,53 @@
+{
+  "name": "Date Math Workflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Start",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {"name": "startDate", "value": "2023-10-01"},
+            {"name": "endDate", "value": "2023-10-10"}
+          ]
+        },
+        "options": {}
+      },
+      "name": "Mock Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 1,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "language": "python",
+        "pythonCode": "from datetime import datetime\n\nitems = _input.all()\n\nfor item in items:\n    start_date = datetime.strptime(item['json']['startDate'], '%Y-%m-%d')\n    end_date = datetime.strptime(item['json']['endDate'], '%Y-%m-%d')\n    item['json']['days_difference'] = (end_date - start_date).days\n\nreturn items"
+      },
+      "name": "Calculate Days",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [680, 300]
+    }
+  ],
+  "connections": {
+    "Start": {
+      "main": [
+        [{"node": "Mock Data", "type": "main", "index": 0}]
+      ]
+    },
+    "Mock Data": {
+      "main": [
+        [{"node": "Calculate Days", "type": "main", "index": 0}]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "1"
+}

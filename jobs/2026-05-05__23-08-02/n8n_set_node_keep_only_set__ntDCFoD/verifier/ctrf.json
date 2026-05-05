@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777994276.4949446,
+            "stop": 1777994276.514462
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists_and_valid",
+                "status": "passed",
+                "duration": 0.0007079951465129852,
+                "start": 1777994276.50899,
+                "stop": 1777994276.5099456,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_trigger_node",
+                "status": "passed",
+                "duration": 0.0004984349943697453,
+                "start": 1777994276.510181,
+                "stop": 1777994276.510832,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_code_node",
+                "status": "passed",
+                "duration": 0.0005093389190733433,
+                "start": 1777994276.5110376,
+                "stop": 1777994276.511691,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_contains_set_node_with_keep_only_set",
+                "status": "passed",
+                "duration": 0.0005375631153583527,
+                "start": 1777994276.5118632,
+                "stop": 1777994276.5125299,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_set_node_keeps_required_fields",
+                "status": "passed",
+                "duration": 0.0005372546147555113,
+                "start": 1777994276.5127144,
+                "stop": 1777994276.5134113,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_connections",
+                "status": "passed",
+                "duration": 0.0005482181441038847,
+                "start": 1777994276.513589,
+                "stop": 1777994276.5142763,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

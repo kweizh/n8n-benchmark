@@ -1,0 +1,52 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 33ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py .F                                             [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_workflow_execution ____________________________
+
+    def test_workflow_execution():
+        """Priority 1: Execute the workflow using n8n CLI and check the output."""
+        result = subprocess.run(
+            ["n8n", "execute", "--file", WORKFLOW_FILE],
+            capture_output=True,
+            text=True,
+            cwd="/home/user"
+        )
+    
+        assert result.returncode == 0, f"n8n execute failed with error:\n{result.stderr}\nOutput:\n{result.stdout}"
+    
+        # Check that the output contains the expected JSON structure
+        # Since n8n execution output can be verbose, we check if the expected JSON string or keys are present
+        output = result.stdout
+>       assert "Alice" in output, f"Expected 'Alice' in the workflow output, but got: {output}"
+E       AssertionError: Expected 'Alice' in the workflow output, but got: n8n Task Broker ready on 127.0.0.1, port 5679
+E         Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode
+E         "--id" has to be set!
+E         
+E       assert 'Alice' in 'n8n Task Broker ready on 127.0.0.1, port 5679\nFailed to start Python task runner in internal mode. because its virtu...l mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode\n"--id" has to be set!\n'
+
+tests/test_final_state.py:26: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_workflow_file_exists
+FAILED tests/test_final_state.py::test_workflow_execution - AssertionError: E...
+========================= 1 failed, 1 passed in 2.30s ==========================

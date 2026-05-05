@@ -1,0 +1,101 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 20ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 4 items
+
+tests/test_final_state.py ..FF                                           [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_zip_archive_created ___________________________
+
+    def test_zip_archive_created():
+>       assert os.path.isfile(OUTPUT_ZIP), f"Expected ZIP archive not found at {OUTPUT_ZIP}"
+E       AssertionError: Expected ZIP archive not found at /home/user/output/archive.zip
+E       assert False
+E        +  where False = <function isfile at 0x787148920220>('/home/user/output/archive.zip')
+E        +    where <function isfile at 0x787148920220> = <module 'posixpath' (frozen)>.isfile
+E        +      where <module 'posixpath' (frozen)> = os.path
+
+tests/test_final_state.py:30: AssertionError
+__________________________ test_zip_archive_contents ___________________________
+
+    def test_zip_archive_contents():
+        extract_dir = os.path.join(PROJECT_DIR, "extracted_output")
+        os.makedirs(extract_dir, exist_ok=True)
+    
+        try:
+>           with zipfile.ZipFile(OUTPUT_ZIP, 'r') as zip_ref:
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <zipfile.ZipFile [closed]>, file = '/home/user/output/archive.zip'
+mode = 'r', compression = 0, allowZip64 = True, compresslevel = None
+
+    def __init__(self, file, mode="r", compression=ZIP_STORED, allowZip64=True,
+                 compresslevel=None, *, strict_timestamps=True, metadata_encoding=None):
+        """Open the ZIP file with mode read 'r', write 'w', exclusive create 'x',
+        or append 'a'."""
+        if mode not in ('r', 'w', 'x', 'a'):
+            raise ValueError("ZipFile requires mode 'r', 'w', 'x', or 'a'")
+    
+        _check_compression(compression)
+    
+        self._allowZip64 = allowZip64
+        self._didModify = False
+        self.debug = 0  # Level of printing: 0 through 3
+        self.NameToInfo = {}    # Find file info given name
+        self.filelist = []      # List of ZipInfo instances for archive
+        self.compression = compression  # Method of compression
+        self.compresslevel = compresslevel
+        self.mode = mode
+        self.pwd = None
+        self._comment = b''
+        self._strict_timestamps = strict_timestamps
+        self.metadata_encoding = metadata_encoding
+    
+        # Check that we don't try to write with nonconforming codecs
+        if self.metadata_encoding and mode != 'r':
+            raise ValueError(
+                "metadata_encoding is only supported for reading files")
+    
+        # Check if we were passed a file-like object
+        if isinstance(file, os.PathLike):
+            file = os.fspath(file)
+        if isinstance(file, str):
+            # No, it's a filename
+            self._filePassed = 0
+            self.filename = file
+            modeDict = {'r' : 'rb', 'w': 'w+b', 'x': 'x+b', 'a' : 'r+b',
+                        'r+b': 'w+b', 'w+b': 'wb', 'x+b': 'xb'}
+            filemode = modeDict[mode]
+            while True:
+                try:
+>                   self.fp = io.open(file, filemode)
+                              ^^^^^^^^^^^^^^^^^^^^^^^
+E                   FileNotFoundError: [Errno 2] No such file or directory: '/home/user/output/archive.zip'
+
+usr/lib/python3.12/zipfile/__init__.py:1347: FileNotFoundError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_workflow_file_exists
+PASSED tests/test_final_state.py::test_workflow_execution
+FAILED tests/test_final_state.py::test_zip_archive_created - AssertionError: ...
+FAILED tests/test_final_state.py::test_zip_archive_contents - FileNotFoundErr...
+========================= 2 failed, 2 passed in 2.51s ==========================

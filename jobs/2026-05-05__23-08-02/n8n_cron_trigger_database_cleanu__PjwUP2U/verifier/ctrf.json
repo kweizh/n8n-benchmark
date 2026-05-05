@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777994052.067394,
+            "stop": 1777994056.8884547
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_exported_and_exists",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2.356538206106052,
+                "start": 1777994052.0825353,
+                "stop": 1777994054.4568138,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_exported_and_exists():\n        \"\"\"Priority 1: Use n8n CLI to export workflows and verify.\"\"\"\n        result = subprocess.run(\n            [\"n8n\", \"export:workflow\", \"--all\", \"--output=/tmp/workflows.json\"],\n            capture_output=True, text=True\n        )\n        assert result.returncode == 0, f\"'n8n export:workflow' failed: {result.stderr}\"\n        assert os.path.isfile(\"/tmp/workflows.json\"), \"Expected /tmp/workflows.json to be created.\"\n    \n        with open(\"/tmp/workflows.json\") as f:\n            workflows = json.load(f)\n    \n        # Workflows export format is typically an array or an object with a workflows array\n        # Let's handle both\n        if isinstance(workflows, dict) and \"workflows\" in workflows:\n            workflows_list = workflows[\"workflows\"]\n        elif isinstance(workflows, list):\n            workflows_list = workflows\n        else:\n            pytest.fail(f\"Unexpected workflows.json format: {type(workflows)}\")\n    \n        db_cleanup_wf = next((w for w in workflows_list if w.get(\"name\") == \"Database Cleanup Workflow\"), None)\n        assert db_cleanup_wf is not None, \"Workflow 'Database Cleanup Workflow' not found.\"\n    \n        # Verify it is active\n        assert db_cleanup_wf.get(\"active\") is True, \"The workflow is not active.\"\n    \n        nodes = db_cleanup_wf.get(\"nodes\", [])\n    \n        # Check for Schedule Trigger node\n        schedule_node = next((n for n in nodes if n.get(\"type\") == \"n8n-nodes-base.scheduleTrigger\"), None)\n        assert schedule_node is not None, \"No Schedule Trigger node found in the workflow.\"\n    \n        # The rule is inside parameters.rule\n        params = schedule_node.get(\"parameters\", {})\n        # It might be nested in rule.value or just rule depending on versions\n        # Let's check the JSON dump\n        rule_found = False\n        if \"rule\" in params:\n            rule_val = params[\"rule\"]\n            if isinstance(rule_val, dict) and rule_val.get(\"value\") == \"0 3 * * *\":\n                rule_found = True\n            elif rule_val == \"0 3 * * *\":\n                rule_found = True\n>       assert rule_found, f\"Schedule Trigger node does not have the expected cron rule '0 3 * * *'. Found parameters: {params}\"\nE       AssertionError: Schedule Trigger node does not have the expected cron rule '0 3 * * *'. Found parameters: {'rule': {'interval': [{'field': 'cronExpression', 'expression': '0 3 * * *'}]}}\nE       assert False\n\ntests/test_final_state.py:60: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_credentials_exported_and_exists",
+                "status": "passed",
+                "duration": 2.4308450061362237,
+                "start": 1777994054.4571419,
+                "stop": 1777994056.8882327,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

@@ -1,0 +1,70 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a90b4d4b-7e6e-4b4e-8e6e-4b4e7e6e4b4e",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "return [\n  {\n    \"id\": 1,\n    \"name\": \"Alice\"\n  },\n  {\n    \"id\": 2,\n    \"name\": \"Bob\"\n  }\n];"
+      },
+      "id": "b90b4d4b-7e6e-4b4e-8e6e-4b4e7e6e4b4e",
+      "name": "Code",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        350,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "convertToBinary",
+        "destinationFormat": "csv",
+        "binaryPropertyName": "data",
+        "options": {
+          "fileName": "users.csv"
+        }
+      },
+      "id": "c90b4d4b-7e6e-4b4e-8e6e-4b4e7e6e4b4e",
+      "name": "Convert to File",
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

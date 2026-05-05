@@ -1,0 +1,33 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://httpbin.org/basic-auth/admin/secret",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpBasicAuth"
+      },
+      "id": "19b88f3a-685a-4b95-a83d-e35f0f3769c0",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        250,
+        300
+      ],
+      "credentials": {
+        "httpBasicAuth": {
+          "id": "1",
+          "name": "Basic Auth"
+        }
+      }
+    }
+  ],
+  "connections": {},
+  "active": false,
+  "settings": {},
+  "versionId": "8582d02a-9e6e-4f51-8d2a-87b686259483",
+  "id": "1",
+  "meta": {
+    "instanceId": "cb4863378627818e692131238627818e69213123"
+  }
+}

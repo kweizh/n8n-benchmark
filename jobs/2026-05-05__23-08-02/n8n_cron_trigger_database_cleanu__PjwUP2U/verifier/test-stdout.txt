@@ -1,0 +1,79 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 16ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py F.                                             [100%]
+
+=================================== FAILURES ===================================
+______________________ test_workflow_exported_and_exists _______________________
+
+    def test_workflow_exported_and_exists():
+        """Priority 1: Use n8n CLI to export workflows and verify."""
+        result = subprocess.run(
+            ["n8n", "export:workflow", "--all", "--output=/tmp/workflows.json"],
+            capture_output=True, text=True
+        )
+        assert result.returncode == 0, f"'n8n export:workflow' failed: {result.stderr}"
+        assert os.path.isfile("/tmp/workflows.json"), "Expected /tmp/workflows.json to be created."
+    
+        with open("/tmp/workflows.json") as f:
+            workflows = json.load(f)
+    
+        # Workflows export format is typically an array or an object with a workflows array
+        # Let's handle both
+        if isinstance(workflows, dict) and "workflows" in workflows:
+            workflows_list = workflows["workflows"]
+        elif isinstance(workflows, list):
+            workflows_list = workflows
+        else:
+            pytest.fail(f"Unexpected workflows.json format: {type(workflows)}")
+    
+        db_cleanup_wf = next((w for w in workflows_list if w.get("name") == "Database Cleanup Workflow"), None)
+        assert db_cleanup_wf is not None, "Workflow 'Database Cleanup Workflow' not found."
+    
+        # Verify it is active
+        assert db_cleanup_wf.get("active") is True, "The workflow is not active."
+    
+        nodes = db_cleanup_wf.get("nodes", [])
+    
+        # Check for Schedule Trigger node
+        schedule_node = next((n for n in nodes if n.get("type") == "n8n-nodes-base.scheduleTrigger"), None)
+        assert schedule_node is not None, "No Schedule Trigger node found in the workflow."
+    
+        # The rule is inside parameters.rule
+        params = schedule_node.get("parameters", {})
+        # It might be nested in rule.value or just rule depending on versions
+        # Let's check the JSON dump
+        rule_found = False
+        if "rule" in params:
+            rule_val = params["rule"]
+            if isinstance(rule_val, dict) and rule_val.get("value") == "0 3 * * *":
+                rule_found = True
+            elif rule_val == "0 3 * * *":
+                rule_found = True
+>       assert rule_found, f"Schedule Trigger node does not have the expected cron rule '0 3 * * *'. Found parameters: {params}"
+E       AssertionError: Schedule Trigger node does not have the expected cron rule '0 3 * * *'. Found parameters: {'rule': {'interval': [{'field': 'cronExpression', 'expression': '0 3 * * *'}]}}
+E       assert False
+
+tests/test_final_state.py:60: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_credentials_exported_and_exists
+FAILED tests/test_final_state.py::test_workflow_exported_and_exists - Asserti...
+========================= 1 failed, 1 passed in 4.82s ==========================

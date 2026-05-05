@@ -1,0 +1,62 @@
+[
+  {
+    "id": "1",
+    "name": "Database Cleanup Workflow",
+    "nodes": [
+      {
+        "parameters": {
+          "rule": {
+            "interval": [
+              {
+                "field": "cronExpression",
+                "expression": "0 3 * * *"
+              }
+            ]
+          }
+        },
+        "id": "7660c18c-3091-4e44-8d4e-1282121e7845",
+        "name": "Schedule Trigger",
+        "type": "n8n-nodes-base.scheduleTrigger",
+        "typeVersion": 1,
+        "position": [
+          250,
+          300
+        ]
+      },
+      {
+        "parameters": {
+          "operation": "executeQuery",
+          "query": "DELETE FROM logs WHERE created_at < NOW() - INTERVAL '30 days';"
+        },
+        "id": "e98e98e9-e98e-4e98-e98e-e98e98e98e98",
+        "name": "Postgres",
+        "type": "n8n-nodes-base.postgres",
+        "typeVersion": 1,
+        "position": [
+          450,
+          300
+        ],
+        "credentials": {
+          "postgres": {
+            "id": "1"
+          }
+        }
+      }
+    ],
+    "connections": {
+      "Schedule Trigger": {
+        "main": [
+          [
+            {
+              "node": "Postgres",
+              "type": "main",
+              "index": 0
+            }
+          ]
+        ]
+      }
+    },
+    "active": true,
+    "settings": {}
+  }
+]

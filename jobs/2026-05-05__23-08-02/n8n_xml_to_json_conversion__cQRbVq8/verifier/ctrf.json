@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777994379.1913772,
+            "stop": 1777994381.494044
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.0004858700558543205,
+                "start": 1777994379.2017784,
+                "stop": 1777994379.2024643,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_execution",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 2.2766870907507837,
+                "start": 1777994379.2026541,
+                "stop": 1777994381.4938502,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_execution():\n        \"\"\"Priority 1: Execute the workflow using n8n CLI and check the output.\"\"\"\n        result = subprocess.run(\n            [\"n8n\", \"execute\", \"--file\", WORKFLOW_FILE],\n            capture_output=True,\n            text=True,\n            cwd=\"/home/user\"\n        )\n    \n        assert result.returncode == 0, f\"n8n execute failed with error:\\n{result.stderr}\\nOutput:\\n{result.stdout}\"\n    \n        # Check that the output contains the expected JSON structure\n        # Since n8n execution output can be verbose, we check if the expected JSON string or keys are present\n        output = result.stdout\n>       assert \"Alice\" in output, f\"Expected 'Alice' in the workflow output, but got: {output}\"\nE       AssertionError: Expected 'Alice' in the workflow output, but got: n8n Task Broker ready on 127.0.0.1, port 5679\nE         Failed to start Python task runner in internal mode. because its virtual environment is missing from this system. Launching a Python runner in internal mode is intended only for debugging and is not recommended for production. Users are encouraged to deploy in external mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode\nE         \"--id\" has to be set!\nE         \nE       assert 'Alice' in 'n8n Task Broker ready on 127.0.0.1, port 5679\\nFailed to start Python task runner in internal mode. because its virtu...l mode. See: https://docs.n8n.io/hosting/configuration/task-runners/#setting-up-external-mode\\n\"--id\" has to be set!\\n'\n\ntests/test_final_state.py:26: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

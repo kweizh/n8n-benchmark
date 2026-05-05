@@ -1,0 +1,54 @@
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 7 packages in 18ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+tests/test_final_state.py .F                                             [100%]
+
+=================================== FAILURES ===================================
+___________________________ test_workflow_execution ____________________________
+
+    def test_workflow_execution():
+        # Import the workflow
+        import_result = subprocess.run(
+            ["n8n", "import:workflow", "--input=/home/user/workspace/workflow.json"],
+            capture_output=True,
+            text=True
+        )
+>       assert import_result.returncode == 0, f"Failed to import workflow: {import_result.stderr}\n{import_result.stdout}"
+E       AssertionError: Failed to import workflow: (node:1050) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+E         (Use `node --trace-deprecation ...` to show where the warning was created)
+E         
+E         Permissions 0644 for n8n settings file /root/.n8n/config are too wide. This is ignored for now, but in the future n8n will attempt to change the permissions automatically. To automatically enforce correct permissions now set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true (recommended), or turn this check off set N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false.
+E         User settings loaded from: /root/.n8n/config
+E         
+E         There is a deprecation related to your environment variables. Please take the recommended actions to update your configuration:
+E          - N8N_RUNNERS_ENABLED -> Running n8n without task runners is deprecated. Task runners will be turned on by default in a future version. Please set `N8N_RUNNERS_ENABLED=true` to enable task runners now and avoid potential issues in the future. Learn more: https://docs.n8n.io/hosting/configuration/task-runners/
+E         
+E         An error occurred while importing workflows. See log messages for details.
+E         workflows.map is not a function
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['n8n', 'import:workflow', '--input=/home/user/workspace/workflow.json'], returncode=1, stdout='...ase use a userland alternative instead.\n(Use `node --trace-deprecation ...` to show where the warning was created)\n').returncode
+
+tests/test_final_state.py:15: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_workflow_exists
+FAILED tests/test_final_state.py::test_workflow_execution - AssertionError: F...
+========================= 1 failed, 1 passed in 2.37s ==========================

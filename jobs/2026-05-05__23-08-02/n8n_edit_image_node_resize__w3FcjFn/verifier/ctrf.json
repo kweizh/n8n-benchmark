@@ -1,0 +1,41 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 2,
+            "passed": 1,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1777993790.1581852,
+            "stop": 1777993796.441599
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_workflow_file_exists",
+                "status": "passed",
+                "duration": 0.00046864524483680725,
+                "start": 1777993790.1703033,
+                "stop": 1777993790.1709743,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_workflow_execution_and_output",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 6.253618068993092,
+                "start": 1777993790.1711674,
+                "stop": 1777993796.4413548,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_workflow_execution_and_output():\n        assert os.path.isfile(WORKFLOW_FILE), \"Workflow file must exist to execute.\"\n        shutil.copy(WORKFLOW_FILE, \"/tmp/workflow.json\")\n    \n        if os.path.exists(OUTPUT_IMAGE):\n            os.remove(OUTPUT_IMAGE)\n    \n        result = subprocess.run(\n            [\"n8n\", \"execute\", \"--file\", \"/tmp/workflow.json\"],\n            capture_output=True, text=True, cwd=\"/home/node\"\n        )\n    \n        assert result.returncode == 0, f\"Workflow execution failed: {result.stderr}\\n{result.stdout}\"\n>       assert os.path.isfile(OUTPUT_IMAGE), f\"Output image {OUTPUT_IMAGE} was not created by the workflow.\"\nE       AssertionError: Output image /home/node/output.png was not created by the workflow.\nE       assert False\nE        +  where False = <function isfile at 0x77fec5d94220>('/home/node/output.png')\nE        +    where <function isfile at 0x77fec5d94220> = <module 'posixpath' (frozen)>.isfile\nE        +      where <module 'posixpath' (frozen)> = os.path\n\ntests/test_final_state.py:24: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

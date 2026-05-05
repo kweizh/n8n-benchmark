@@ -1,0 +1,94 @@
+{
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "76497f14-046e-4903-9993-47a4687d96a1",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/input.png"
+      },
+      "id": "e9876778-9e63-44d5-8123-2883394628a3",
+      "name": "Read File",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        320,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "resize",
+        "width": 100,
+        "height": 100,
+        "resizeOption": "maximumArea"
+      },
+      "id": "f5b5c92b-8a1a-4d2b-9e4a-9c6a1b2c3d4e",
+      "name": "Edit Image",
+      "type": "n8n-nodes-base.editImage",
+      "typeVersion": 1,
+      "position": [
+        540,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "fileName": "/home/node/output.png",
+        "dataPropertyName": "data"
+      },
+      "id": "a1b2c3d4-e5f6-4a5b-b6c7-d8e9f0a1b2c3",
+      "name": "Write File",
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1,
+      "position": [
+        760,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Read File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read File": {
+      "main": [
+        [
+          {
+            "node": "Edit Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Image": {
+      "main": [
+        [
+          {
+            "node": "Write File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
